@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="assets/ICON.png">
-  <title>Gestor de Tareas Pro</title>
-  <link rel="stylesheet" href="css/styles_tasks.css">
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/supabase.js"></script>
-  <script src="js/guard.js"></script>
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" href="assets/ICON.png">
+
+  <title>Gestor de Tareas Pro</title>
+
+  <link rel="stylesheet" href="css/styles.css">
+
 </head>
+
 <body>
   <div class="background-radial">
     <div class="tasks-card">
-      
+
       <div class="header">
         <h2>MIS TAREAS</h2>
         <button onclick="logout()" class="logout-btn">Salir 🚪</button>
@@ -22,15 +26,15 @@
 
       <div class="task-form">
         <input id="task-input" type="text" placeholder="¿Qué sigue?" autocomplete="off">
-        
+
         <div class="form-row">
           <select id="task-priority">
             <option value="normal">🟢 Normal</option>
             <option value="urgent">🔴 Urgente</option>
           </select>
-          
+
           <input id="task-date" type="date">
-          
+
           <button onclick="prepareTask()" class="add-btn-large">Agregar</button>
         </div>
       </div>
@@ -43,14 +47,21 @@
 
       <div class="list-container">
         <ul id="task-list">
-          </ul>
+        </ul>
       </div>
-      
-    </div>
-  </div>
 
+    </div>
+
+    <button onclick="exportTasks()" class="logout-btn">Exportar ⬇️</button>
+    <label class="logout-btn" style="cursor:pointer">Importar ⬆️
+      <input type="file" accept=".json" hidden onchange="importTasks(this)">
+    </label>
+  </div>
+  <script src="js/storage.js"></script> 
   <script src="js/auth.js"></script>
+  <script src="js/guard.js"></script>
   <script src="js/tasks.js"></script>
   <button id="add-task-btn" class="add-btn-large">Agregar</button>
 </body>
+
 </html>

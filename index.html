@@ -1,23 +1,12 @@
 <head>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/supabase.js"></script> 
+  <script src="js/storage.js"></script> 
+  <script src="js/auth.js"></script>
 </head>
 <body>
   <script>
     async function redirectUser() {
       // Esperamos un momento a que el cliente se inicialice
-      if (!window.supabaseClient) {
-        console.error("Error: supabaseClient no inicializado. Revisa la ruta del script.");
-        return;
-      }
-      
-      const { data: { session } } = await window.supabaseClient.auth.getSession();
-
-      if (session) {
-        window.location.href = "tasks.html";
-      } else {
-        window.location.href = "login.html";
-      }
+location.href = getSession() ? "tasks.html" : "login.html"
     }
     // Ejecutamos después de que cargue la página
     window.onload = redirectUser;

@@ -1,94 +1,138 @@
-* {
+/* ==========================================================
+   styles.css — archivo único (login, registro, tareas)
+   ========================================================== */
+
+/* ---------- Tokens ---------- */
+:root {
+  --bg-1: #2ebf91;
+  --bg-2: #8360c3;
+
+  /* Vidrio oscuro tintado: garantiza contraste con texto blanco */
+  --glass: rgba(15, 10, 40, 0.42);
+  --glass-border: rgba(255, 255, 255, 0.22);
+  --surface: rgba(255, 255, 255, 0.12);
+  --surface-strong: rgba(255, 255, 255, 0.2);
+
+  --text: #ffffff;
+  --text-soft: rgba(255, 255, 255, 0.8);
+  --placeholder: rgba(255, 255, 255, 0.65);
+
+  --accent: #00c9b7;
+  --accent-hover: #00e0cb;
+  --accent-ink: #06211f;      /* texto oscuro sobre el acento */
+  --danger: #ff8a8a;
+  --danger-bg: rgba(255, 107, 107, 0.18);
+
+  --radius-lg: 22px;
+  --radius-md: 12px;
+}
+
+/* ---------- Reset y base ---------- */
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+html { color-scheme: dark; }
+
 body {
-  height: 100vh;
+  min-height: 100vh;
+  min-height: 100dvh;
+  color: var(--text);
+  background: var(--bg-2);
+}
+
+/* Contenedor de pantalla completa (todas las páginas) */
+.background-radial {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Fondo degradado similar al de tu imagen */
-  background: radial-gradient(circle at center, #2ebf91, #8360c3);
-}
-
-.login-card {
-  background: rgba(255, 255, 255, 0.1); /* Efecto cristal */
-  backdrop-filter: blur(10px);
-  padding: 40px 30px;
-  border-radius: 20px;
-  width: 100%;
-  max-width: 400px;
-  text-align: center;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.avatar-container {
-  margin-bottom: 20px;
-}
-
-.avatar-icon {
-  font-size: 50px;
-  color: white;
-  background: rgba(255, 255, 255, 0.2);
-  width: 80px;
-  height: 80px;
-  line-height: 80px;
-  border-radius: 50%;
-  margin: 0 auto;
+  background: radial-gradient(circle at center, var(--bg-1), var(--bg-2));
 }
 
 h2 {
-  color: white;
+  color: var(--text);
   letter-spacing: 2px;
-  margin-bottom: 30px;
   font-weight: 400;
+  margin-bottom: 30px;
+}
+
+:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* ---------- Tarjetas de vidrio ---------- */
+.login-card,
+.tasks-card {
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  color: var(--text);
+}
+
+/* ==========================================================
+   LOGIN / REGISTRO
+   ========================================================== */
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 40px 30px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.avatar-container { margin-bottom: 20px; }
+
+.avatar-icon {
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  margin: 0 auto;
+  font-size: 40px;
+  border-radius: 50%;
+  background: var(--surface-strong);
 }
 
 .input-group {
-  margin-bottom: 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   display: flex;
   align-items: center;
+  margin-bottom: 20px;
   padding: 5px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.55);
 }
 
-.input-group span {
-  color: white;
-  margin-right: 10px;
-}
+.input-group span { margin-right: 10px; }
 
 .input-group input {
-  background: none;
-  border: none;
-  color: white;
   width: 100%;
   padding: 10px;
-  outline: none;
-}
-
-.input-group input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.login-btn {
-  width: 100%;
-  padding: 12px;
-  background: #00c9b7;
   border: none;
-  border-radius: 25px;
-  color: white;
-  font-size: 18px;
-  cursor: pointer;
-  margin-top: 20px;
-  transition: background 0.3s;
+  outline: none;
+  background: none;
+  color: var(--text);
+  font-size: 15px;
 }
 
-.login-btn:hover {
-  background: #00a89a;
+.input-group input::placeholder { color: var(--placeholder); }
+
+.input-group:focus-within { border-bottom-color: var(--accent); }
+
+/* Evita el fondo blanco/texto oscuro del autocompletado de Chrome */
+.input-group input:-webkit-autofill {
+  -webkit-text-fill-color: #fff;
+  transition: background-color 9999s ease-in-out 0s;
+  box-shadow: 0 0 0 1000px transparent inset;
 }
 
 .extra-options {
@@ -97,43 +141,266 @@ h2 {
   align-items: center;
   margin-top: 15px;
   font-size: 13px;
-  color: white;
+  color: var(--text-soft);
 }
 
-.extra-options a, .footer-link a {
-  color: white;
+.remember-me { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+.remember-me input { accent-color: var(--accent); }
+
+.footer-link { margin-top: 35px; }
+
+.footer-link p {
+  color: var(--text-soft);
+  font-size: 13px;
+}
+
+.extra-options a,
+.footer-link a {
+  color: var(--text);
+  font-weight: 600;
   text-decoration: none;
-  opacity: 0.8;
+  opacity: 0.9;
+  transition: opacity 0.2s;
 }
 
-.extra-options a:hover, .footer-link a:hover {
+.extra-options a:hover,
+.footer-link a:hover {
   opacity: 1;
   text-decoration: underline;
 }
 
-.footer-link {
-  margin-top: 40px;
+/* ==========================================================
+   BOTONES PRIMARIOS (login, registro, agregar tarea)
+   Texto oscuro sobre acento = contraste alto
+   ========================================================== */
+.login-btn,
+.add-btn-large {
+  border: none;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
 }
 
+.login-btn:hover,
+.add-btn-large:hover { background: var(--accent-hover); }
 
-/* Añade esto a tu archivo style.css si no lo tenías */
-.background-radial {
+.login-btn:active,
+.add-btn-large:active { transform: scale(0.98); }
+
+.login-btn {
   width: 100%;
-  height: 100vh;
+  margin-top: 20px;
+  padding: 12px;
+  border-radius: 25px;
+  font-size: 17px;
+}
+
+.add-btn-large {
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+/* ==========================================================
+   TAREAS
+   ========================================================== */
+.tasks-card {
+  width: 100%;
+  max-width: 520px;
+  height: 80vh;
+  height: min(80dvh, 720px);
+  padding: 28px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.header h2 { margin: 0; font-size: 20px; }
+
+.header-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* Botones del header (salir / exportar / importar) */
+.logout-btn,
+.ghost-btn {
+  border: 1px solid var(--glass-border);
+  background: var(--surface);
+  color: var(--text);
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.ghost-btn:hover { background: var(--surface-strong); }
+
+.logout-btn { border-color: rgba(255, 138, 138, 0.5); }
+.logout-btn:hover { background: var(--danger-bg); }
+
+/* Formulario */
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.task-form input[type="text"],
+select,
+input[type="date"] {
+  background: var(--surface);
+  border: 1px solid var(--glass-border);
+  color: var(--text);
+  padding: 11px 14px;
+  border-radius: var(--radius-md);
+  outline: none;
+  font-size: 14px;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.task-form input[type="text"] { width: 100%; }
+
+select,
+input[type="date"] { flex: 1 1 120px; min-width: 0; }
+
+.task-form input::placeholder { color: var(--placeholder); }
+
+.task-form input:focus,
+select:focus {
+  border-color: var(--accent);
+  background: var(--surface-strong);
+}
+
+option { background: #24203f; color: #fff; }
+
+/* Pestañas */
+.filter-tabs {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.tab {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-soft);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 6px 10px;
+  transition: color 0.2s;
+}
+
+.tab:hover { color: var(--text); }
+
+.tab.active {
+  color: var(--text);
+  font-weight: 600;
+  border-bottom-color: var(--accent);
+}
+
+.urgent-tab:hover { color: var(--danger); }
+
+/* Lista */
+.list-container {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+}
+
+#task-list { list-style: none; }
+
+#task-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding: 14px 15px;
+  border-radius: 15px;
+  background: var(--surface);
+  color: var(--text);
+  border-left: 4px solid transparent;
+  animation: fadeIn 0.3s ease;
+}
+
+#task-list li.priority-urgent {
+  background: var(--danger-bg);
+  border-left-color: var(--danger);
+}
+
+.task-content {
   display: flex;
   align-items: center;
-  justify-content: center;
-  background: radial-gradient(circle at center, #2ebf91, #8360c3);
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  min-width: 0;
+  word-break: break-word;
 }
 
-/* Estilo para que los enlaces se vean mejor sobre el fondo oscuro */
-.footer-link a {
-  text-decoration: none;
-  color: #00c9b7;
-  transition: 0.3s;
+.task-content input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
-.footer-link a:hover {
-  color: white;
-  text-decoration: underline;
+.completed-text {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.task-date {
+  width: 100%;
+  margin-left: 28px;
+  color: var(--text-soft);
+  font-size: 12px;
+}
+
+.btn-delete {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: var(--surface-strong);
+  color: var(--danger);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-delete:hover { background: var(--danger-bg); border-color: var(--danger); }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Móvil ---------- */
+@media (max-width: 480px) {
+  .background-radial { padding: 12px; }
+  .tasks-card { padding: 20px 16px; }
+  .login-card { padding: 32px 22px; }
+  .add-btn-large { flex: 1 1 100%; }
 }
