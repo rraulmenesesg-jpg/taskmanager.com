@@ -1,0 +1,139 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Fondo degradado similar al de tu imagen */
+  background: radial-gradient(circle at center, #2ebf91, #8360c3);
+}
+
+.login-card {
+  background: rgba(255, 255, 255, 0.1); /* Efecto cristal */
+  backdrop-filter: blur(10px);
+  padding: 40px 30px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.avatar-container {
+  margin-bottom: 20px;
+}
+
+.avatar-icon {
+  font-size: 50px;
+  color: white;
+  background: rgba(255, 255, 255, 0.2);
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+h2 {
+  color: white;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+  font-weight: 400;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.input-group span {
+  color: white;
+  margin-right: 10px;
+}
+
+.input-group input {
+  background: none;
+  border: none;
+  color: white;
+  width: 100%;
+  padding: 10px;
+  outline: none;
+}
+
+.input-group input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background: #00c9b7;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background 0.3s;
+}
+
+.login-btn:hover {
+  background: #00a89a;
+}
+
+.extra-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  font-size: 13px;
+  color: white;
+}
+
+.extra-options a, .footer-link a {
+  color: white;
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.extra-options a:hover, .footer-link a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.footer-link {
+  margin-top: 40px;
+}
+
+
+/* Añade esto a tu archivo style.css si no lo tenías */
+.background-radial {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, #2ebf91, #8360c3);
+}
+
+/* Estilo para que los enlaces se vean mejor sobre el fondo oscuro */
+.footer-link a {
+  text-decoration: none;
+  color: #00c9b7;
+  transition: 0.3s;
+}
+
+.footer-link a:hover {
+  color: white;
+  text-decoration: underline;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es-mx">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="assets/ICON.png">
+  <title>Iniciar Sesión</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/auth.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="background-radial">
+    <div class="login-card">
+      <div class="avatar-container">
+        <div class="avatar-icon">👤</div>
+      </div>
+      
+      <h2>MEMBER LOGIN</h2>
+      
+      <form id="loginForm" onsubmit="event.preventDefault(); login(document.getElementById('email').value, document.getElementById('password').value);">
+        <div class="input-group">
+          <span class="icon">👤</span>
+          <input id="email" type="email" placeholder="Email" autocomplete="email" required>
+        </div>
+        
+        <div class="input-group">
+          <span class="icon">🔒</span>
+          <input id="password" type="password" placeholder="Password" autocomplete="current-password" required>
+        </div>
+        
+        <button type="submit" class="login-btn">login</button>
+        
+        <div class="extra-options">
+          <label class="remember-me">
+            <input type="checkbox"> Remember me
+          </label>
+          <a href="#" class="forgot-pass">reset password</a>
+        </div>
+      </form>
+
+      <div class="footer-link">
+        <a href="register.html">Create account</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
